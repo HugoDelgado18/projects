@@ -26,9 +26,11 @@
         <%= link_to "Sign Up", new_user_registration_path, class: 'link' %>
         <% end %>
         <% if user_signed_in? %>
-        <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'link' %>
-        <%= link_to "Edit user", edit_user_registration_path, class: 'link' %>
         <%= link_to "Appointments", appointments_path, class: 'link' %>
+        <%= link_to "To Do Lists", todo_lists_path, class: 'link' %>
+        <%= link_to "Daily Affirmation", affirmations_path, class: 'link' %>
+        <%= link_to "Account Settings", edit_user_registration_path, class: 'link' %>
+        <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'link' %>
     <% end %>
     </div>
     <div><small></small></div>
