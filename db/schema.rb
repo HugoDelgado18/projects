@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_161116) do
+ActiveRecord::Schema.define(version: 2020_11_12_164907) do
 
   create_table "affirmations", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -25,6 +25,24 @@ ActiveRecord::Schema.define(version: 2020_11_12_161116) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
+  create_table "todo_items", force: :cascade do |t|
+    t.string "content"
+    t.integer "todo_list_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "completed_at"
+    t.index ["todo_list_id"], name: "index_todo_items_on_todo_list_id"
+  end
+
+  create_table "todo_lists", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_todo_lists_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,4 +61,6 @@ ActiveRecord::Schema.define(version: 2020_11_12_161116) do
   end
 
   add_foreign_key "appointments", "users"
+  add_foreign_key "todo_items", "todo_lists"
+  add_foreign_key "todo_lists", "users"
 end
