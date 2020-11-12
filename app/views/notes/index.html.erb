@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All My Notes</h1></br></br> 
+
+
+
+  <ol>
+    <% @notes.each do |note| %>
+      <tr>
+       <li> <td><%= link_to note.title, note %></td> </li>
+      </tr>
+    <% end %>
+ </ol>
+
+<br></br></br> 
+
+<%= link_to 'Create a New Note', new_note_path %></br>
+<%= link_to "Return to Home Page", root_path, class: 'link' %> 
+
+

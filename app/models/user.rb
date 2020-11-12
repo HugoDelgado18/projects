@@ -7,4 +7,5 @@ class User < ApplicationRecord
 
   has_many :appointments, dependent: :destroy
   has_many :todo_lists, dependent: :destroy
+  has_many :notes, dependent: :destroy 
 end

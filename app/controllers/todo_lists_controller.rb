@@ -1,4 +1,5 @@
 class TodoListsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_todo_list, only: [:show, :edit, :update, :destroy]
 
   # GET /todo_lists
@@ -25,6 +26,7 @@ class TodoListsController < ApplicationController
   # POST /todo_lists.json
   def create
     @todo_list = TodoList.new(todo_list_params)
+    @todo_list.user_id = current_user.id 
 
     respond_to do |format|
       if @todo_list.save
@@ -42,7 +44,7 @@ class TodoListsController < ApplicationController
   def update
     respond_to do |format|
       if @todo_list.update(todo_list_params)
-        format.html { redirect_to @todo_list, notice: 'Todo list was successfully updated.' }
+        format.html { redirect_to @todo_list, notice: 'To Do List was successfully updated.' }
         format.json { render :show, status: :ok, location: @todo_list }
       else
         format.html { render :edit }
