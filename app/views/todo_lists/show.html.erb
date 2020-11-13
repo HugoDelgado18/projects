@@ -1,17 +1,26 @@
-<p id="notice"><%= notice %></p>
-<p>
-  <strong>Title:</strong>
-  <%= @todo_list.title %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @todo_list.description %>
-</p>
-<div id="todo_items_wrapper">
- <%= render @todo_list.todo_items %>
- <div id="form">
-  <%= render "todo_items/form" %>
- </div>
+<div class ="card-header d-flex justify-content-between"
+<div>
+<h5 class='m-0'><b><%= @todo_list.title %></b></h5>
+<p class='text-secondary m-0'><small>100% Complete (12/12 Todo Items)</small></p>
 </div>
-<%= link_to 'Edit', edit_todo_list_path(@todo_list) %> |
-<%= link_to 'Back', todo_lists_path %>
+<div>
+<%= link_to 'Edit', edit_todo_list_path(@todo_list), class: 'btn btn-primary btn-sm'%>      
+</div>
+
+  <ul class='list-group'>
+    <% @todo_list.todo_items.each do |todo_item| %>
+      <li class='list-group-item'>
+      <div class="d-flex justify-content-between">
+      <span>
+        <%= todo_item.content %>
+      </span>
+      <%= link_to '#', class: 'btn btn-success' do %>
+      <i class= 'fas fa-check'></li>
+      <%end%>
+      </div> 
+      </li>
+    <% end %>
+  </ul> 
+
+
+

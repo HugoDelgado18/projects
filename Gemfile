@@ -57,3 +57,4 @@ gem 'jquery-ui-rails'
 
 
 gem 'simple_calendar', '~> 2.4', '>= 2.4.1'
+gem "stimulus_reflex", "~> 3.3"

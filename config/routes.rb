@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
   resources :notes
-  resources :todo_lists do
-    resources :todo_items do
-     member do
-      patch :complete
-     end
-   end
-  end
+  resources :todo_lists 
+  resources :todo_items
   resources :affirmations, only: [:index]
   devise_for :users
   resources :appointments

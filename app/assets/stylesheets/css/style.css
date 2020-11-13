@@ -41,6 +41,24 @@
      p:hover::before {
         width: 100%;
     }
+
+    /*
+   form start
+    */
+
+    .form-body {
+      width: 300px;
+      border: 15px solid green;
+      padding: 50px;
+      margin: 20px;
+      box-sizing: border-box;
+    }
+
+    .form-label {
+      font-family: sans-serif;
+    }
+
+
     /*
     trial start
     */

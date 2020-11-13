@@ -1,12 +1,33 @@
 class TodoItemsController < ApplicationController
-    
     before_action :set_todo_list
     before_action :set_todo_item, except: [:create]
 
-   def create
-    @todo_item = @todo_list.todo_items.create(todo_item_params)
-    redirect_to @todo_list
-   end
+    def create
+    @todo_item = TodoItem.new(todo_item_params)
+
+    respond_to do |format|
+        if @todo_item.save 
+            format.html { redirect_to @todo_list}
+            format.json { render :show, status: :created, location: @todo_list }
+        else 
+            redirect_to @todo_list
+            format.json { render json: @todo_list.errors, status: :unprocessable_entity }
+        end
+      end 
+    end 
+
+   def update 
+    @todo_item = TodoItem.find(params[:id])
+
+    respond_to do |format|
+        if @todo_item.update(todo_item_params)
+            redirect_to todo_list_path(@todo_item.todo_list_id)
+        else 
+            redirect_to todo_lists_path 
+            format.json { render json: @todo_item.errors, status: :unprocessable_entity }
+        end 
+      end 
+    end 
 
    def destroy
     @todo_item = @todo_list.todo_items.find(params[:id])
@@ -18,23 +39,18 @@ class TodoItemsController < ApplicationController
     redirect_to @todo_list 
    end
 
-   def complete
-    @todo_item.update_attribute(:completed_at, Time.now)
-    redirect_to @todo_list, notice: "Todo item completed"
-   end
-
    private
 
-   def set_todo_list
+   def set_todo_list 
     @todo_list = TodoList.find(params[:todo_list_id])
-   end
+   end 
 
-   def set_todo_item
+   def set_todo_item 
     @todo_item = @todo_list.todo_items.find(params[:id])
-   end
+   end 
 
    def todo_item_params
-    params[:todo_item].permit(:content)
+    params.require(:todo_item).permit(:content)
    end
 
 end

@@ -1,3 +1,4 @@
+<div class = "form-body">
 <%= form_with(model: note, local: true) do |form| %>
   <% if note.errors.any? %>
     <div id="error_explanation">
@@ -12,7 +13,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :title, class: "form-label"%>
     <%= form.text_field :title %>
   </div>
 
@@ -25,3 +26,4 @@
     <%= form.submit %>
   </div>
 <% end %>
+</div>

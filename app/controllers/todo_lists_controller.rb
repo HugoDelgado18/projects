@@ -11,6 +11,8 @@ class TodoListsController < ApplicationController
   # GET /todo_lists/1
   # GET /todo_lists/1.json
   def show
+    @todo_item = TodoItem.new
+    @todo_items = @todo_list.todo_items
   end
 
   # GET /todo_lists/new
